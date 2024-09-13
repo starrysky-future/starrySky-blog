@@ -114,7 +114,7 @@ CREATE SCHEMA `prisma_test` DEFAULT CHARACTER SET utf8mb4;
 
 ![](//liushuaiyang.oss-cn-shanghai.aliyuncs.com/nest-docs/image/第114章-13.png)
 
-```env
+```
 DATABASE_URL="mysql://root:guang@localhost:3306/prisma_test"
 ```
 

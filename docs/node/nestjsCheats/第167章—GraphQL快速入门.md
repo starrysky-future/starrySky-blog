@@ -317,7 +317,7 @@ studentsbyTeacherName 字段的 resolver 是一个异步函数，里面执行了
 
 ![](//liushuaiyang.oss-cn-shanghai.aliyuncs.com/nest-docs/image/第167章-19.png)
 
-```grqphql
+```
 type Res {
     success: Boolean
     id: String

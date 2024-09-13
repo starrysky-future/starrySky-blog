@@ -159,11 +159,11 @@ contextBridge.exposeInMainWorld("electron", {
   - `title` string (可选) - 对话框标题。 无法在一些 _Linux_ 桌面环境中显示。
   - `defaultPath` string (可选) - 默认情况下使用的绝对目录路径、绝对文件路径或文件名。
   - `buttonLabel` string (可选) - 「确认」按钮的自定义标签, 当为空时, 将使用默认标签。
-  - `filters` [FileFilter\[\]](可选)
+  - `filters` [FileFilter\[\]] (可选)
   - `message` string (可选) _macOS_ -显示在对话框上的消息。
   - `nameFieldLabel` string (可选) _macOS_ - 文件名输入框对应的自定义标签名。
   - `showsTagField` boolean (可选) _macOS_ - 显示标签输入框，默认为 `true`。
-  - properties string[]\(可选)
+  - properties string[] (可选)
     - `showHiddenFiles`-显示对话框中的隐藏文件。
     - `createDirectory` _macOS_ -允许你通过对话框的形式创建新的目录。
     - `treatPackageAsDirectory` _macOS_ -将包 (如 `.app `文件夹) 视为目录而不是文件。
