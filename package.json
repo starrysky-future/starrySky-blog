@@ -19,6 +19,7 @@
     "doc": "docs"
   },
   "devDependencies": {
+    "@types/node": "^22.5.4",
     "pagefind": "^1.1.0",
     "sass": "^1.76.0",
     "typescript": "^5.4.5",
