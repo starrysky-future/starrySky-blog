@@ -411,7 +411,7 @@ ConfigModule.forRoot({
 
 添加对应的 src/.env
 
-```env
+```
 etcd_hosts=http://localhost:2379
 etcd_auth_username=root
 etcd_auth_password=guang

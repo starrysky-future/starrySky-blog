@@ -51,7 +51,7 @@ redis 是 key-value 的数据库，value 有很多种类型：
 
 在 RedisInsight 里输入命令，点击执行：
 
-```redis
+```
 geoadd loc 13.361389 38.115556 "guangguang" 15.087269 37.502669 "dongdong"
 ```
 

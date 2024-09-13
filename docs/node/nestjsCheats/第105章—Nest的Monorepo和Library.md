@@ -230,7 +230,7 @@ npm run start:dev app2
 
 ![](//liushuaiyang.oss-cn-shanghai.aliyuncs.com/nest-docs/image/第105章-30.png)
 
-浏览器访问下 http://localhost:3001/aaa 和 http://localhost:3000/bbb
+浏览器访问下 `http://localhost:3001/aaa` 和 `http://localhost:3000/bbb`
 
 ![](//liushuaiyang.oss-cn-shanghai.aliyuncs.com/nest-docs/image/第105章-31.png)
 

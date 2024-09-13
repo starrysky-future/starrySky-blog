@@ -730,7 +730,7 @@ exec 是底层通过 execFile 实现 execFile 底层通过 spawn 实现
 
 index.js
 
-```jss
+```js
 const { fork } = require("child_process");
 
 const testProcess = fork("./test.js");
