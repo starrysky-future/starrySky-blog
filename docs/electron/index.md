@@ -296,9 +296,9 @@ export default createTray;
 
    - ```js
      const { clipboard } = require("electron");
-
+  
      clipboard.writeText("hello i am a bit of text!");
-
+  
      const text = clipboard.readText();
      console.log(text);
      // hello i am a bit of text!'
@@ -308,7 +308,7 @@ export default createTray;
 
    - ```js
      const { clipboard } = require("electron");
-
+  
      const text = "hello i am a bit of text!";
      clipboard.writeText(text);
      ```
@@ -317,10 +317,10 @@ export default createTray;
 
    - ```js
      const { clipboard } = require("electron");
-
+  
      clipboard.writeHTML("<b>Hi</b>");
      const html = clipboard.readHTML();
-
+  
      console.log(html);
      // <meta charset='utf-8'><b>Hi</b>
      ```
@@ -329,7 +329,7 @@ export default createTray;
 
    - ```js
      const { clipboard } = require("electron");
-
+  
      clipboard.writeHTML("<b>Hi</b>");
      ```
 
@@ -479,68 +479,71 @@ session.defaultSession.webRequest.onBeforeSendHeaders
 ### 1.electron-updater
 
 ```js
-import { is } from "@electron-toolkit/utils";
-import { BrowserWindow, dialog, shell } from "electron";
-import { autoUpdater } from "electron-updater";
+import { is, ipcHelper } from '@electron-toolkit/utils';
+import { BrowserWindow } from 'electron';
+import { autoUpdater, UpdateInfo } from 'electron-updater';
+import { updaterLog } from '../log';
 
 // 自动下载更新
 autoUpdater.autoDownload = false;
 // 退出时自动安装更新
 autoUpdater.autoInstallOnAppQuit = false;
+autoUpdater.logger = updaterLog;
+
+if (is.dev) {
+  // 开发环境开启更新检查
+  autoUpdater.forceDevUpdateConfig = true;
+}
 
 export default (win: BrowserWindow): void => {
-  // 检查是否有更新
-  if (!is.dev) autoUpdater.checkForUpdates();
+  ipcHelper.on('checkForUpdates', () => {
+    // 检查是否有更新
+    autoUpdater.checkForUpdates();
+  });
+  ipcHelper.on('downloadUpdate', () => {
+    updaterLog.info('开始下载更新');
+    // 下载更新
+    autoUpdater.downloadUpdate();
+  });
 
   // 有新版本
-  autoUpdater.on("update-available", (_info) => {
-    dialog
-      .showMessageBox({
-        type: "info",
-        title: "更新信息",
-        message: "发现新版本",
-        buttons: ["现在更新", "下次一定"],
-        cancelId: 1,
-      })
-      .then((res) => {
-        if (res.response == 0) {
-          // 更新
-          autoUpdater.downloadUpdate();
-        }
-      });
+  autoUpdater.on('update-available', (_info: UpdateInfo) => {
+    updaterLog.info('存在新版本:', _info.version);
+    win.webContents.send('update', {
+      updateStatus: 'update-available',
+      version: _info.version,
+      size: _info.files[0].size
+    });
   });
 
   // 没有新版本
-  autoUpdater.on("update-not-available", (_info: any) => {
-    win.webContents.send("version", _info.tag);
+  autoUpdater.on('update-not-available', (_info: UpdateInfo) => {
+    updaterLog.info('当前版本为最新版本:', _info.version);
+    win.webContents.send('update', {
+      updateStatus: 'update-not-available',
+      version: _info.version
+    });
   });
 
   // 更新完毕
-  autoUpdater.on("update-downloaded", (_info) => {
+  autoUpdater.on('update-downloaded', () => {
+    updaterLog.info('开始更新');
     // 退出并安装更新
     autoUpdater.quitAndInstall();
   });
 
   // 更新出错
-  autoUpdater.on("error", (_info) => {
-    dialog
-      .showMessageBox({
-        type: "error",
-        title: "更新失败",
-        message: "软件更新失败",
-        buttons: ["发布页面下载", "取消更新"],
-        cancelId: 1,
-      })
-      .then((res) => {
-        if (res.response == 0) {
-          shell.openExternal("https://starrysky-future.github.io/blog/");
-        }
-      });
+  autoUpdater.on('error', (error) => {
+    updaterLog.info('更新出错:', error);
+    win.webContents.send('update', {
+      updateStatus: 'error',
+      error: error
+    });
   });
 
   // 监听下载进度
-  autoUpdater.on("download-progress", (progress) => {
-    win.webContents.send("downloadProgress", progress);
+  autoUpdater.on('download-progress', (progress) => {
+    win.webContents.send('update', { updateStatus: 'download-progress', progress: progress });
   });
 };
 ```
@@ -687,7 +690,7 @@ if (process.contextIsolated) {
     ```
     import { app } from 'electron'
     import { optimizer } from '@electron-toolkit/utils'
-
+  
     app.whenReady().then(() => {
       app.on('browser-window-created', (_, window) => {
         optimizer.watchWindowShortcuts(window)
@@ -711,7 +714,7 @@ if (process.contextIsolated) {
     // main.js
     import { app } from 'electron'
     import { optimizer } from '@electron-toolkit/utils'
-
+    
     app.whenReady().then(() => {
       optimizer.registerFramelessWindowIpc()
     })
@@ -725,3 +728,25 @@ if (process.contextIsolated) {
     ipcRenderer.send('win:invoke', 'max')
     ipcRenderer.send('win:invoke', 'close')
     ```
+
+### 4.electron-log
+
+打印日志
+
+~~~typescript
+import log from 'electron-log';
+
+const mainLog = log.create({ logId: 'updaterLog' });
+mainLog.transports.file.fileName = 'main.log';
+// updaterLog.transports.file.level = false; // 不输出到日志文件
+// updaterLog.transports.console.level = false; // 不输出到控制台
+// 达到上限会备份一个updater.old.log文件，备份文件有且只有一个
+mainLog.transports.file.maxSize = 1048576;
+
+const updaterLog = log.create({ logId: 'updaterLog' });
+updaterLog.transports.file.fileName = 'updater.log';
+updaterLog.transports.file.maxSize = 1048576;
+
+export { mainLog, updaterLog };
+~~~
+
