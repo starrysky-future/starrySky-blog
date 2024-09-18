@@ -1,3 +1,5 @@
+const base = process.env.GITHUB_ACTIONS === "true" ? "/starrySky-blog/" : "/";
+
 export default [
   {
     title: "星乐app",
@@ -16,12 +18,12 @@ export default [
     },
     url: "https://github.com/starrysky-future/starrysky-music-desktop/tags",
     cover: [
-      "/electron/music/songList.png",
-      "/electron/music/rankingList.png",
-      "/electron/music/collect.png",
-      "/electron/music/search.png",
-      "/electron/music/seeting.png",
-      "/electron/music/lyric.png",
+      `${base}electron/music/songList.png`,
+      `${base}electron/music/rankingList.png`,
+      `${base}electron/music/collect.png`,
+      `${base}electron/music/search.png`,
+      `${base}electron/music/seeting.png`,
+      `${base}electron/music/lyric.png`,
     ],
     tags: ["Electron", "Vue3", "typescript"],
     links: [
@@ -47,7 +49,7 @@ export default [
       text: "请试用",
     },
     url: "https://github.com/starrysky-future/copyRecord/tags",
-    cover: "/electron/copyRecord/menu.jpg",
+    cover: `${base}electron/copyRecord/menu.jpg`,
     tags: ["Electron", "js"],
     links: [
       {
@@ -72,7 +74,10 @@ export default [
       text: "",
     },
     url: "https://github.com/starrysky-future/myCamera/tags",
-    cover: ["/electron/camera/seeting.png", "/electron/camera/camera.png"],
+    cover: [
+      `${base}electron/camera/seeting.png`,
+      `${base}electron/camera/camera.png`,
+    ],
     tags: ["Electron", "vue"],
     links: [
       {
