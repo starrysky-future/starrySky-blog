@@ -58,8 +58,13 @@ const blogTheme = getThemeConfig({
       avatar: "https://vitepress.dev/vitepress-logo-large.webp",
       url: "https://vitepress.dev/",
     },
+    {
+      nickname: "粥里有勺糖",
+      des: "@sugarat/theme主题作者",
+      avatar: "https://cdn.upyun.sugarat.top/avatar/blog/zlyst-avatar.jpeg",
+      url: "https://sugarat.top/",
+    },
   ],
-
   // 公告
   popover: {
     title: "公告",
