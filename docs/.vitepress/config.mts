@@ -78,7 +78,7 @@ export default defineConfig({
     socialLinks: [
       {
         icon: "github",
-        link: "https://github.com/starrysky-future/blog",
+        link: "https://github.com/starrysky-future/starrySky-blog",
       },
     ],
   },
