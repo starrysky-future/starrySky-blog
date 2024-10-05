@@ -4,7 +4,7 @@ tags: 前端
 categories:
   - 大前端
 recommend: 1
-sticky: 1
+sticky: 3
 ---
 
 # js 手写

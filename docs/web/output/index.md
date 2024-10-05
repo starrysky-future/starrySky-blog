@@ -4,7 +4,7 @@ tags: 前端
 categories:
   - 大前端
 recommend: 1
-sticky: 2
+sticky: 4
 ---
 
 # 代码输出

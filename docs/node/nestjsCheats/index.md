@@ -6,11 +6,11 @@ tags:
 categories:
   - node
 recommend: 1
-sticky: 6
+sticky: 9
 top: 1
 ---
 
-# 第 01 章—开篇词
+# 第 01 章—开篇词(nestjs 通关秘籍)
 
 一直做前端开发，都会有成为全栈工程师的想法，而 Nest 就是一个很好的途径，它是 Node 最流行的企业级开发框架，提供了 IOC、AOP、微服务等架构特性。
 

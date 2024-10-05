@@ -4,7 +4,7 @@ tag:
 categories:
   - 算法
 recommend: 1
-sticky: 5
+sticky: 8
 top: 2
 ---
 

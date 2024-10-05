@@ -4,7 +4,7 @@ tags: 前端
 categories:
   - 大前端
 recommend: 1
-sticky: 3
+sticky: 5
 ---
 
 # VUE 3.0
@@ -353,9 +353,9 @@ onMounted(() => {
 
 - v-model
 
-  - ~~~vue
+  - ```vue
     const isVisible = defineModel<boolean>();
-    ~~~
+    ```
 
 - provide & inject
 
@@ -363,14 +363,14 @@ onMounted(() => {
     <script setup>
     import { ref, provide } from "vue";
     import { countSymbol } from "./injectionSymbols";
-    
+
     // 提供静态值
     provide("path", "/project/");
-    
+
     // 提供响应式的值
     const count = ref(0);
     provide("count", count);
-    
+
     // 提供时将 Symbol 作为 key
     provide(countSymbol, count);
     </script>
@@ -380,22 +380,22 @@ onMounted(() => {
     <script setup>
     import { inject } from "vue";
     import { countSymbol } from "./injectionSymbols";
-    
+
     // 注入不含默认值的静态值
     const path = inject("path");
-    
+
     // 注入响应式的值
     const count = inject("count");
-    
+
     // 通过 Symbol 类型的 key 注入
     const count2 = inject(countSymbol);
-    
+
     // 注入一个值，若为空则使用提供的默认值
     const bar = inject("path", "/default-path");
-    
+
     // 注入一个值，若为空则使用提供的函数类型的默认值
     const fn = inject("function", () => {});
-    
+
     // 注入一个值，若为空则使用提供的工厂函数
     const baz = inject("factory", () => new ExpensiveObject(), true);
     </script>
@@ -410,10 +410,10 @@ onMounted(() => {
   ```vue
   <script setup>
   import { ref } from "vue";
-  
+
   const a = 1;
   const b = ref(2);
-  
+
   defineExpose({
     a,
     b,
@@ -549,7 +549,7 @@ API 已重命名，以便更好地与组件生命周期保持一致
 - beforeUpdate：新的！这是在元素本身更新之前调用的，很像组件生命周期钩子
 - update → 移除！有太多的相似之处要更新，所以这是多余的，请改用 `updated`
 - componentUpdated → **updated**
-- beforeUnmount  `新的`与组件生命周期钩子类似，它将在卸载元素之前调用。
+- beforeUnmount `新的`与组件生命周期钩子类似，它将在卸载元素之前调用。
 - unbind -> **unmounted**
 
 ```vue
@@ -564,76 +564,79 @@ beforeMount(el,binding,vnode){ el.style.background = binding.value; }, })
 
 对于自己编写的组件在页面加载时不用一同加载，而是触发条件之后出现，可进行异步加载
 
-~~~vue
-import { defineAsyncComponent } from 'vue';
-
-export const modalConfig = {
-  ListAddModal: defineAsyncComponent(() => import('@r/components/operate/ListAddModal.vue')),
-  UpdateModal: defineAsyncComponent(() => import('@r/components/operate/UpdateModal.vue'))
-};
-~~~
+```vue
+import { defineAsyncComponent } from 'vue'; export const modalConfig = {
+ListAddModal: defineAsyncComponent(() =>
+import('@r/components/operate/ListAddModal.vue')), UpdateModal:
+defineAsyncComponent(() => import('@r/components/operate/UpdateModal.vue')) };
+```
 
 ### 2.路由按需加载
 
-直接加载的话，所有页面资源都构建在一个js文件中，按需加载后访问对应页面加载对应资源
+直接加载的话，所有页面资源都构建在一个 js 文件中，按需加载后访问对应页面加载对应资源
 
-~~~typescript
-import { createRouter, RouteRecordRaw, Router, createWebHashHistory } from 'vue-router';
+```typescript
+import {
+  createRouter,
+  RouteRecordRaw,
+  Router,
+  createWebHashHistory,
+} from "vue-router";
 
 const routes: Array<RouteRecordRaw> = [
   {
-    name: 'songList',
-    path: '/',
-    component: () => import('@r/views/songList/songList.vue')
+    name: "songList",
+    path: "/",
+    component: () => import("@r/views/songList/songList.vue"),
   },
   {
-    name: 'songListDetail',
-    path: '/songListDetail',
-    component: () => import('@r/views/songList/songListDetail.vue')
+    name: "songListDetail",
+    path: "/songListDetail",
+    component: () => import("@r/views/songList/songListDetail.vue"),
   },
   {
-    name: 'leaderBoard',
-    path: '/leaderBoard',
-    component: () => import('@r/views/leaderBoard/leaderBoard.vue')
+    name: "leaderBoard",
+    path: "/leaderBoard",
+    component: () => import("@r/views/leaderBoard/leaderBoard.vue"),
   },
   {
-    name: 'collect',
-    path: '/collect',
-    component: () => import('@r/views/collect/collect.vue')
+    name: "collect",
+    path: "/collect",
+    component: () => import("@r/views/collect/collect.vue"),
   },
   {
-    name: 'search',
-    path: '/search',
-    component: () => import('@r/views/search/search.vue')
+    name: "search",
+    path: "/search",
+    component: () => import("@r/views/search/search.vue"),
   },
   {
-    name: 'setting',
-    path: '/setting',
-    component: () => import('@r/views/setting/setting.vue')
-  }
+    name: "setting",
+    path: "/setting",
+    component: () => import("@r/views/setting/setting.vue"),
+  },
 ];
 
 const router: Router = createRouter({
   history: createWebHashHistory(),
-  routes: routes
+  routes: routes,
 });
 
 export default router;
-~~~
+```
 
 ### 3.第三方包&自定义全局组件
 
 #### 1.按需引入
 
-对第三方包&自定义全局组件使用unplugin-vue-components进行按需引入
+对第三方包&自定义全局组件使用 unplugin-vue-components 进行按需引入
 
-~~~
+```
 npm i unplugin-vue-components -D
-~~~
+```
 
 vite.config
 
-~~~typescript
+```typescript
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
 import { defineConfig } from 'vite'
@@ -650,26 +653,26 @@ export default defineConfig({
     })
   ]
 }
-~~~
+```
 
 - **importStyle** 指是否需要自动随引入加载对应的组件样式，某些二级组件（比如 DateRangePicker）没办法准确地识别正确路径，直接关闭
 - **resolveIcons** 配置是否对 antd 的图标起作用
 
-样式不生效安装vite-plugin-style-import
+样式不生效安装 vite-plugin-style-import
 
 ```
 npm i vite-plugin-style-import -D
 ```
 
-~~~typescript
-import { defineConfig } from 'vite'
+```typescript
+import { defineConfig } from "vite";
 import styleImport, {
   AndDesignVueResolve,
   VantResolve,
   ElementPlusResolve,
   NutuiResolve,
-  AntdResolve
-} from 'vite-plugin-style-import'
+  AntdResolve,
+} from "vite-plugin-style-import";
 
 export default defineConfig({
   plugins: [
@@ -679,114 +682,111 @@ export default defineConfig({
         VantResolve(),
         ElementPlusResolve(),
         NutuiResolve(),
-        AntdResolve()
+        AntdResolve(),
       ],
       // 自定义规则
       libs: [
         {
-          libraryName: 'ant-design-vue',
+          libraryName: "ant-design-vue",
           esModule: true,
           resolveStyle: (name) => {
-            return `ant-design-vue/es/${name}/style/index`
-          }
-        }
-      ]
-    })
+            return `ant-design-vue/es/${name}/style/index`;
+          },
+        },
+      ],
+    }),
   ],
   // 引用使用less的库要配置一下
   css: {
     preprocessorOptions: {
       less: {
-        javascriptEnabled: true
-      }
-    }
-  }
-})
-
-~~~
+        javascriptEnabled: true,
+      },
+    },
+  },
+});
+```
 
 #### 2.拆包
 
-未拆包打包构建的资源所有的第三方包都在一个js文件中
+未拆包打包构建的资源所有的第三方包都在一个 js 文件中
 
-~~~typescript
+```typescript
 export default defineConfig({
-	build: {
+  build: {
     rollupOptions: {
       output: {
         manualChunks(id: string) {
-          if (id.includes('node_modules')) {
-            const moduleName = id.split('node_modules/')[1].split('/')[0]
-            return moduleName
+          if (id.includes("node_modules")) {
+            const moduleName = id.split("node_modules/")[1].split("/")[0];
+            return moduleName;
           }
-        }
-      }
-    }
-  }
-})
-~~~
+        },
+      },
+    },
+  },
+});
+```
 
 ## 四、pinia
 
 ### 1.定义&解构
 
-通过defineStore进行定义
+通过 defineStore 进行定义
 
-~~~typescript
-export const useSongListStore = defineStore('useSongListStore', () => {
+```typescript
+export const useSongListStore = defineStore("useSongListStore", () => {
   const sourceId = ref<string>(sources.sources[0].id);
-  const tagId = ref<string>('');
+  const tagId = ref<string>("");
   const sortId = ref<string>(sources[sourceId.value].config.sortList[0].id);
 
   const initlist: SKY.SongList.SongListSource = initList({
     limit: 30,
     list: [],
     pageSize: 1,
-    source: 'wy',
-    total: 0
+    source: "wy",
+    total: 0,
   });
 
   const songList = ref<SKY.SongList.SongListSource>(initlist);
 
   const curListId = computed(() => {
     if (tagId.value) {
-      return sourceId.value + '_' + sortId.value + '_' + tagId.value;
+      return sourceId.value + "_" + sortId.value + "_" + tagId.value;
     }
-    return sourceId.value + '_' + sortId.value;
+    return sourceId.value + "_" + sortId.value;
   });
 
   const pageSize = ref<number>(1);
 
   return { songList, sourceId, sortId, tagId, pageSize, curListId };
 });
-~~~
+```
 
-如需在使用页面解构使用，需要用到storeToRefs
+如需在使用页面解构使用，需要用到 storeToRefs
 
-~~~vue
-import { storeToRefs } from 'pinia';
-import { useSongListStore } from '@r/store/songList';
-
-const songListStore = useSongListStore();
-const { songList, sourceId, sortId, curListId, tagId, pageSize } = storeToRefs(songListStore);
-~~~
+```vue
+import { storeToRefs } from 'pinia'; import { useSongListStore } from
+'@r/store/songList'; const songListStore = useSongListStore(); const { songList,
+sourceId, sortId, curListId, tagId, pageSize } = storeToRefs(songListStore);
+```
 
 ### 2.在组件外使用 store
 
-这有可能导致使用时pinia 实例还未被激活出现报错，需将pinia实例手动导入
+这有可能导致使用时 pinia 实例还未被激活出现报错，需将 pinia 实例手动导入
 
-~~~typescript
-import pinia from '@r/store';
-import { storeToRefs } from 'pinia';
-import { usePlayStore } from '@r/store/play';
+```typescript
+import pinia from "@r/store";
+import { storeToRefs } from "pinia";
+import { usePlayStore } from "@r/store/play";
 
 const playStore = usePlayStore(pinia); // 导入pinia实例
 const { statulyric, curPlayInfo } = storeToRefs(playStore);
-~~~
+```
 
 ### 3.数据持久化
 
-使用插件pinia-plugin-persistedstate
+使用插件 pinia-plugin-persistedstate
 
 ```
 npm i pinia-plugin-persistedstate -S
@@ -794,41 +794,41 @@ npm i pinia-plugin-persistedstate -S
 
 注册
 
-~~~typescript
-import { createPinia } from 'pinia';
-import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
+```typescript
+import { createPinia } from "pinia";
+import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 
 const pinia = createPinia();
 pinia.use(piniaPluginPersistedstate);
 
 export default pinia;
-~~~
+```
 
-使用时，只需要通过persist: true开启
+使用时，只需要通过 persist: true 开启
 
-~~~typescript
+```typescript
 export const useSongListStore = defineStore(
-  'useSongListStore',
+  "useSongListStore",
   () => {
     const sourceId = ref<string>(sources.sources[0].id);
-    const tagId = ref<string>('');
+    const tagId = ref<string>("");
     const sortId = ref<string>(sources[sourceId.value].config.sortList[0].id);
 
     const initlist: SKY.SongList.SongListSource = initList({
       limit: 30,
       list: [],
       pageSize: 1,
-      source: 'wy',
-      total: 0
+      source: "wy",
+      total: 0,
     });
 
     const songList = ref<SKY.SongList.SongListSource>(initlist);
 
     const curListId = computed(() => {
       if (tagId.value) {
-        return sourceId.value + '_' + sortId.value + '_' + tagId.value;
+        return sourceId.value + "_" + sortId.value + "_" + tagId.value;
       }
-      return sourceId.value + '_' + sortId.value;
+      return sourceId.value + "_" + sortId.value;
     });
 
     const pageSize = ref<number>(1);
@@ -836,44 +836,44 @@ export const useSongListStore = defineStore(
     return { songList, sourceId, sortId, tagId, pageSize, curListId };
   },
   {
-    persist: true
+    persist: true,
   }
 );
-~~~
+```
 
 ## 五、mixin
 
 ### 1.组合式函数
 
-vue3.0不建议使用mixin，而是用组合式函数替代，例如获取鼠标位置：
+vue3.0 不建议使用 mixin，而是用组合式函数替代，例如获取鼠标位置：
 
-~~~typescript
+```typescript
 // mouse.ts
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted } from "vue";
 
 // 按照惯例，组合式函数名以“use”开头
 export function useMouse() {
   // 被组合式函数封装和管理的状态
-  const x = ref(0)
-  const y = ref(0)
+  const x = ref(0);
+  const y = ref(0);
 
   // 组合式函数可以随时更改其状态。
   function update(event) {
-    x.value = event.pageX
-    y.value = event.pageY
+    x.value = event.pageX;
+    y.value = event.pageY;
   }
 
   // 一个组合式函数也可以挂靠在所属组件的生命周期上
   // 来启动和卸载副作用
-  onMounted(() => window.addEventListener('mousemove', update))
-  onUnmounted(() => window.removeEventListener('mousemove', update))
+  onMounted(() => window.addEventListener("mousemove", update));
+  onUnmounted(() => window.removeEventListener("mousemove", update));
 
   // 通过返回值暴露所管理的状态
-  return { x, y }
+  return { x, y };
 }
-~~~
+```
 
-### 2.第三方hooks库
+### 2.第三方 hooks 库
 
 1. **VueUse**
    - VueUse 是一个非常受欢迎的 Vue 3 Composition API 实用工具集合，提供了一系列实用的 hooks，可以简化常见的 Web 开发任务。它包括了大量的 hooks，如 useFetch, useDark, useFocus, useStorage 等等。
