@@ -233,16 +233,57 @@ export const tools = [
     ],
   },
   {
+    text:"学习&面试",
+    items:[
+      {
+        text:"掘金",
+        link:"https://juejin.cn/frontend",
+        target: "_blank",
+      },
+      {
+        text:"前端面试题宝典",
+        link:"https://fe.ecool.fun/",
+        target: "_blank",
+      },
+      {
+        text:"灵题库",
+        link:"https://www.lingtiku.com/",
+        target: "_blank",
+      },
+      {
+        text:"在线书签",
+        link:"https://www.html5iq.com/frontend/index",
+        target: "_blank",
+      },
+      {
+        text:"阿西河",
+        link:"https://www.axihe.com/edu/ask.html",
+        target: "_blank",
+      },
+      {
+        text:"大前端面试题库",
+        link:"https://bigerfe.com/",
+        target: "_blank",
+      },
+      {
+        text: "力扣",
+        link: "https://leetcode.cn/problemset/",
+        target: "_blank",
+      },
+      {
+        text: "牛客网",
+        link: "https://www.nowcoder.com/exam/interview?order=0",
+        target: "_blank",
+        
+      }
+    ]
+  },
+  {
     text: "其他",
     items: [
       {
         text: "github",
         link: "https://github.com/",
-        target: "_blank",
-      },
-      {
-        text: "leetcode",
-        link: "https://leetcode.cn/problemset/",
         target: "_blank",
       },
       {
