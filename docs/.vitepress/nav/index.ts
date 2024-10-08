@@ -152,7 +152,7 @@ export const tools = [
       },
       {
         text: "reactnative",
-        link: "https://www.reactnative.cn/",
+        link: "https://www.react-native.cn/",
         target: "_blank",
       },
     ],
