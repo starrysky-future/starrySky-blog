@@ -438,7 +438,7 @@ services:
 app:
 environment:
 
-​ - NODE_ENV=production
+ - NODE_ENV=production
 
 ## 五.Minio 问题
 
@@ -469,3 +469,24 @@ dev 数据库已经建表，导出数据删表执行
 ### 1.Request Entity Too Large
 
 nginx 限制了上传数据的大小。打开 nginx 主配置文件 nginx.conf，一般在/usr/local/nginx/conf/nginx.conf 这个位置，找到 http{}段，修改或者添加：client_max_body_size 2m;
+
+## 八、React Native问题
+
+### 1.Cannot find JAR 'kotlin-compiler-embeddable-1.9.0.jar' required by module 'gradle-kotlin-dsl' using classpath or distribution directory 'C:\Users\Administrator\.gradle\wrapper\dists\gradle-8.3-all\6en3ugtfdg5xnpx44z4qbwgas\gradle-8.3'
+
+将gradle-8.3-al整个文件夹删除，重新下载就好了
+
+### 2.Gradle构建失败，找不到keystore.properties
+
+这个文件通常用于存储应用程序的签名信息，包括密钥库路径、密钥库密码等。下载其他人的项目，这个文件因为信息问题
+不会上传的
+将android==>app==>build.gradle文件内的这几行代码进行屏蔽：
+
+~~~
+// keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+// storeFile file(keystoreProperties['storeFile'])
+// storePassword keystoreProperties['storePassword']
+// keyAlias keystoreProperties['keyAlias']
+// keyPassword keystoreProperties['keyPassword']
+~~~
+
