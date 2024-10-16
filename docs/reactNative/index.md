@@ -6,6 +6,16 @@
 
 下载 Node，注意 Node 的版本应大于等于 18，可以设置淘宝镜像用于下载加速
 
+查看镜像：
+
+~~~
+npm get registry
+~~~
+
+~~~
+npm config list
+~~~
+
 官方源：
 
 ~~~
@@ -23,19 +33,33 @@ npm config set registry https://registry.npmmirror.com
 使用nrm工具切换淘宝源：
 
 ~~~
-npx nrm use taobao
+npm i -g nrm
 ~~~
 
  如果之后需要切换回官方源可使用：
 
 ~~~
-npx nrm use npm
+nrm use npm
 ~~~
 
 查看当前源：
 
 ~~~
 nrm current
+~~~
+
+或者使用npx
+
+~~~
+npx nrm use taobao
+~~~
+
+~~~
+npx nrm use npm
+~~~
+
+~~~
+npx nrm current
 ~~~
 
 > 注意：强烈建议始终选择 Node 当前的 LTS （长期维护）版本，一般是偶数版本，不要选择偏实验性质的奇数版本。
