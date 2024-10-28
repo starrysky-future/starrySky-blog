@@ -69,7 +69,7 @@ const blogTheme = getThemeConfig({
   popover: {
     title: "公告",
     body: [{ type: "text", content: "暂无公告" }],
-    duration: 0,
+    duration: 1,
   },
 
   // 相关文章设置
