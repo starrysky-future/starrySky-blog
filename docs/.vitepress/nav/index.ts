@@ -287,6 +287,11 @@ export const tools = [
         target: "_blank",
       },
       {
+        text: "DMZ社区",
+        link: "https://www.dmzshequ.com/",
+        target: "_blank",
+      },
+      {
         text: "typescript",
         link: "https://www.typescriptlang.org/zh/",
         target: "_blank",

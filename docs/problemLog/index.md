@@ -490,3 +490,6 @@ nginx 限制了上传数据的大小。打开 nginx 主配置文件 nginx.conf�
 // keyPassword keystoreProperties['keyPassword']
 ~~~
 
+### 3.Gradle构建失败，Failed to apply plugin 'org.jetbrains.kotlin.jvm'.
+
+C:\Users\Administrator\.gradle\caches\jars-9内的文件缺失，删除重下
