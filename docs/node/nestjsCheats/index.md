@@ -6,8 +6,6 @@ tags:
 categories:
   - node
 recommend: 1
-sticky: 9
-top: 1
 ---
 
 # 第 01 章—开篇词(nestjs 通关秘籍)

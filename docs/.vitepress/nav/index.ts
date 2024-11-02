@@ -98,6 +98,10 @@ export const largefrontend = [
 
 export const node = [
   {
+    text: "nestjs通关秘籍完整版",
+    link: "/node/nestjsCheats2.0/",
+  },
+  {
     text: "nestjs通关秘籍",
     link: "/node/nestjsCheats/",
   },
