@@ -493,3 +493,96 @@ nginx 限制了上传数据的大小。打开 nginx 主配置文件 nginx.conf�
 ### 3.Gradle构建失败，Failed to apply plugin 'org.jetbrains.kotlin.jvm'.
 
 C:\Users\Administrator\.gradle\caches\jars-9内的文件缺失，删除重下
+
+## 九、git问题
+
+### 1. git 推送push代码出现github远程分支拒绝error: GH013: Repository rule violations found for refs/heads/main.
+
+~~~
+Enumerating objects: 218, done.
+Counting objects: 100% (218/218), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (209/209), done.
+Writing objects: 100% (210/210), 696.63 KiB | 5.20 MiB/s, done.
+Total 210 (delta 13), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (13/13), completed with 6 local objects.
+remote: error: GH013: Repository rule violations found for refs/heads/main.
+remote: 
+remote: - GITHUB PUSH PROTECTION
+remote:   —————————————————————————————————————————
+remote:     Resolve the following violations before pushing again
+remote:
+remote:     - Push cannot contain secrets
+remote:
+remote:
+remote:      (?) Learn how to resolve a blocked push
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push
+remote:
+remote:
+remote:       —— Google OAuth Client ID ————————————————————————————
+remote:        locations:
+remote:          - commit: e558858dd4f264a222e09136c4c7669e30fbbfbc
+remote:            path: docs/node/nestJsCheats2.0/75.passport 实现 Google 三方账号登录.md:106
+remote:
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:        https://github.com/starrysky-future/starrySky-blog/security/secret-scanning/unblock-secret/2oIes6iSzXAPXDSXjnnHGPalZMz       
+remote:
+remote:
+remote:       —— Google OAuth Client Secret ————————————————————————
+remote:        locations:
+remote:          - commit: e558858dd4f264a222e09136c4c7669e30fbbfbc
+remote:            path: docs/node/nestJsCheats2.0/75.passport 实现 Google 三方账号登录.md:107
+remote:
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:        https://github.com/starrysky-future/starrySky-blog/security/secret-scanning/unblock-secret/2oIes3uZW5uvtc7Kesq0OwxQu5V       
+remote:
+remote:
+remote:       —— Google OAuth Client ID ————————————————————————————
+remote:        locations:
+remote:          - commit: e558858dd4f264a222e09136c4c7669e30fbbfbc
+remote:            path: docs/node/nestJsCheats2.0/133.会议室预定系统：Google 账号登录后端开发.md:196
+remote:
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:        https://github.com/starrysky-future/starrySky-blog/security/secret-scanning/unblock-secret/2oIes6e26D3W89qK6wQf3vGtLsW       
+remote:
+remote:
+remote:       —— Google OAuth Client Secret ————————————————————————
+remote:        locations:
+remote:          - commit: e558858dd4f264a222e09136c4c7669e30fbbfbc
+remote:            path: docs/node/nestJsCheats2.0/133.会议室预定系统：Google 账号登录后端开发.md:197
+remote:
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:        https://github.com/starrysky-future/starrySky-blog/security/secret-scanning/unblock-secret/2oIes6aZGuxLClq7nCtCNkog1s4       
+remote:
+remote:
+remote:       —— Alibaba Cloud AccessKey ID ————————————————————————
+remote:        locations:
+remote:          - commit: e558858dd4f264a222e09136c4c7669e30fbbfbc
+remote:            path: docs/node/nestJsCheats2.0/35.最完美的 OSS 上传方案.md:308
+remote:          - commit: e558858dd4f264a222e09136c4c7669e30fbbfbc
+remote:            path: docs/node/nestJsCheats2.0/35.最完美的 OSS 上传方案.md:367
+remote:
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:        https://github.com/starrysky-future/starrySky-blog/security/secret-scanning/unblock-secret/2oIes3QP0sMrG0jubCmffTxnoyo       
+remote:
+remote:
+remote:     ——[ WARNING ]—————————————————————————————————————————
+remote:      1 more secrets detected. Remove each secret from your commit history to view more detections.
+remote:      https://docs.github.com/code-security/secret-scanning/using-advanced-secret-scanning-and-push-protection-features/excluding-folders-and-files-from-secret-scanning
+remote:     ——————————————————————————————————————————————————————
+remote:
+remote:
+To https://github.com/starrysky-future/starrySky-blog.git
+ ! [remote rejected] main -> main (push declined due to repository rule violations)
+error: failed to push some refs to 'https://github.com/starrysky-future/starrySky-blog.git'
+~~~
+
+这是因为github的保护机制引起的，代码中有一些重要的key可能会泄露
+
+解决方法：
+
+1. 删除代码里面定义的secret相关的值，重新commit，再push
+2. 修改仓库的配置关闭secret检测
+   1. 单个仓库的设置：Settings-->Code security-->Secret scanning
+   2. 个人的设置：Settings-->Code security-->Push protection for yourself
+3. 通过push提示给出的访问链接进行许可添加
