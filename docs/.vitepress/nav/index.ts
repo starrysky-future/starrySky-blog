@@ -270,6 +270,11 @@ export const tools = [
         target: "_blank",
       },
       {
+        text: "codeTop",
+        link: "https://codetop.cc/home",
+        target: "_blank",
+      },
+      {
         text: "力扣",
         link: "https://leetcode.cn/problemset/",
         target: "_blank",
