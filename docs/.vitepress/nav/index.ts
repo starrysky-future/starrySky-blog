@@ -159,6 +159,16 @@ export const tools = [
         link: "https://www.react-native.cn/",
         target: "_blank",
       },
+      {
+        text: "expo",
+        link: "https://expo.nodejs.cn/",
+        target: "_blank",
+      },
+      {
+        text: "react-navigation",
+        link: "https://react-navigation.nodejs.cn/docs/getting-started/",
+        target: "_blank",
+      },
     ],
   },
   {
@@ -237,36 +247,36 @@ export const tools = [
     ],
   },
   {
-    text:"学习&面试",
-    items:[
+    text: "学习&面试",
+    items: [
       {
-        text:"掘金",
-        link:"https://juejin.cn/frontend",
+        text: "掘金",
+        link: "https://juejin.cn/frontend",
         target: "_blank",
       },
       {
-        text:"前端面试题宝典",
-        link:"https://fe.ecool.fun/",
+        text: "前端面试题宝典",
+        link: "https://fe.ecool.fun/",
         target: "_blank",
       },
       {
-        text:"灵题库",
-        link:"https://www.lingtiku.com/",
+        text: "灵题库",
+        link: "https://www.lingtiku.com/",
         target: "_blank",
       },
       {
-        text:"在线书签",
-        link:"https://www.html5iq.com/frontend/index",
+        text: "在线书签",
+        link: "https://www.html5iq.com/frontend/index",
         target: "_blank",
       },
       {
-        text:"阿西河",
-        link:"https://www.axihe.com/edu/ask.html",
+        text: "阿西河",
+        link: "https://www.axihe.com/edu/ask.html",
         target: "_blank",
       },
       {
-        text:"大前端面试题库",
-        link:"https://bigerfe.com/",
+        text: "大前端面试题库",
+        link: "https://bigerfe.com/",
         target: "_blank",
       },
       {
@@ -283,9 +293,8 @@ export const tools = [
         text: "牛客网",
         link: "https://www.nowcoder.com/exam/interview?order=0",
         target: "_blank",
-        
-      }
-    ]
+      },
+    ],
   },
   {
     text: "其他",
