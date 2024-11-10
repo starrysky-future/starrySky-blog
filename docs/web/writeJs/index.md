@@ -727,11 +727,16 @@ const sum = arr
   .reduce((total, i) => (total += Number(i)), 0);
 
 function add(arr) {
-  if (arr.length === 1) return arr[0];
-  return arr[0] + add(arr.slice(1));
+  return arr.reduce((pre, cur) => {
+    if (Array.isArray(cur)) {
+      return pre + add(cur);
+    } else {
+      return pre + cur;
+    }
+  }, 0);
 }
 
-console.log(add([1, 2, 3, 4, 5]));
+console.log(add(arr));
 ```
 
 ## 二十四、数组去重的方法

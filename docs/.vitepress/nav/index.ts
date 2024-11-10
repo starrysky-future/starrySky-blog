@@ -155,6 +155,21 @@ export const tools = [
         target: "_blank",
       },
       {
+        text: "redux",
+        link: "https://www.redux.org.cn/",
+        target: "_blank",
+      },
+      {
+        text: "react-router6",
+        link: "https://baimingxuan.github.io/react-router6-doc/route/route#casesensitive",
+        target: "_blank",
+      },
+      {
+        text: "react-router-dom",
+        link: "https://serializedowen.github.io/docs/react-router-dom/%E5%90%91%E5%AF%BC/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B",
+        target: "_blank",
+      },
+      {
         text: "reactnative",
         link: "https://www.react-native.cn/",
         target: "_blank",
@@ -167,6 +182,11 @@ export const tools = [
       {
         text: "react-navigation",
         link: "https://react-navigation.nodejs.cn/docs/getting-started/",
+        target: "_blank",
+      },
+      {
+        text: "react-native-navigation",
+        link: "https://wix.github.io/react-native-navigation/docs/installing/",
         target: "_blank",
       },
     ],
@@ -262,6 +282,11 @@ export const tools = [
       {
         text: "灵题库",
         link: "https://www.lingtiku.com/",
+        target: "_blank",
+      },
+      {
+        text: "灵题库-云雀",
+        link: "https://www.yuque.com/baiyueguang-rfnbu/tr4d0i/tgc3uo#DoEq0",
         target: "_blank",
       },
       {
