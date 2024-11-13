@@ -87,4 +87,6 @@ export default defineConfig({
     // 忽略所有 localhost 链接
     /^https?:\/\/localhost/,
   ],
+  metaChunk: true,
+  cacheDir: "./public",
 });
