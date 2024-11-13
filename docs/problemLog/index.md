@@ -586,3 +586,30 @@ error: failed to push some refs to 'https://github.com/starrysky-future/starrySk
    1. 单个仓库的设置：Settings-->Code security-->Secret scanning
    2. 个人的设置：Settings-->Code security-->Push protection for yourself
 3. 通过push提示给出的访问链接进行许可添加
+
+## 十、vitepress
+
+### 1.文件中包含localhost导致构建失败
+
+~~~
+  ignoreDeadLinks: [
+    // 忽略所有 localhost 链接
+    /^https?:\/\/localhost/,
+  ],
+~~~
+
+### 2.数据拆分以及缓存
+
+- ### metaChunk
+
+  - 当设置为 `true` 时，将页面元数据提取到单独的 JavaScript 块中，而不是内联在初始 HTML 中。这使每个页面的 HTML 负载更小，并使页面元数据可缓存，从而当站点中有很多页面时可以减少服务器带宽。
+
+- ### cacheDir
+
+  - 缓存文件的目录，相对于项目根目录
+
+  - ~~~
+    export default {
+      cacheDir: './.vitepress/.vite'
+    }
+    ~~~
