@@ -9,7 +9,7 @@ top: 3
 
 # 问题记录
 
-## 一.前端问题
+## 一、前端问题
 
 ### 1.calc 不生效问题
 
@@ -57,7 +57,7 @@ vue3 在 css 中引用 js 中的变量，找不到变量，原因是组件通过
 
 store 使用时 pinia 实例可能还没有注册给 app，因此需要在使用 store 的地方手动给 store 注入 pinia 实例，例：const setStore = useSetStore(pinia);
 
-## 二.electron 问题
+## 二、electron 问题
 
 ### 1.无法收到鼠标事件（window）
 
@@ -193,7 +193,7 @@ const changeWinState = (operate: string): void => {
 
 因为项目使用 `pnpm` 安装依赖，打完包后有些资源找不到，导致这种很奇怪的报错，改为 npm 安装
 
-## 三.github Action 问题
+## 三、github Action 问题
 
 [github 文档](https://docs.github.com/zh/actions/quickstart)
 
@@ -424,7 +424,7 @@ Error: Process completed with exit code 1.
 
 升级 electron 30 后 electron-builder 需要降级到 24.9.1，这个冲突只影响 action, 本地构建没事，将 electron-builder 锁定 24.9.1。
 
-## 四.docker 问题
+## 四、docker 问题
 
 ### 1.wsl 的更新下载
 
@@ -440,7 +440,7 @@ environment:
 
  - NODE_ENV=production
 
-## 五.Minio 问题
+## 五、Minio 问题
 
 ### 1.无法启动一直 Adding local Minio host to 'mc' configuration
 
@@ -454,7 +454,7 @@ environment:
 
 通过 presignedGetObject 获取的 url 接有参数检验，去除问好后面内容
 
-## 六.typeorm 问题
+## 六、typeorm 问题
 
 ### 1.npm run migration:generate 时会出现部分 entity cannot find module 问题
 
@@ -464,13 +464,13 @@ entity 内使用的绝对路径找不到模块，使用相对路径解决
 
 dev 数据库已经建表，导出数据删表执行
 
-## 七.Nginx 问题
+## 七、Nginx 问题
 
 ### 1.Request Entity Too Large
 
 nginx 限制了上传数据的大小。打开 nginx 主配置文件 nginx.conf，一般在/usr/local/nginx/conf/nginx.conf 这个位置，找到 http{}段，修改或者添加：client_max_body_size 2m;
 
-## 八、React Native问题
+## 八、React Native && expo问题
 
 ### 1.Cannot find JAR 'kotlin-compiler-embeddable-1.9.0.jar' required by module 'gradle-kotlin-dsl' using classpath or distribution directory 'C:\Users\Administrator\.gradle\wrapper\dists\gradle-8.3-all\6en3ugtfdg5xnpx44z4qbwgas\gradle-8.3'
 
@@ -493,6 +493,32 @@ nginx 限制了上传数据的大小。打开 nginx 主配置文件 nginx.conf�
 ### 3.Gradle构建失败，Failed to apply plugin 'org.jetbrains.kotlin.jvm'.
 
 C:\Users\Administrator\.gradle\caches\jars-9内的文件缺失，删除重下
+
+### 4.react-navigation
+
+#### 1.typescript问题
+
+##### 1.navigation.navigate("Details")：类型“[string]”的参数不能赋给类型“never”的参数。第 2 个重载(共 2 个)，“(options: never): void”，出现以下错误。类型“string”的参数不能赋给类型“never”的参数
+
+为根导航器生成 `ParamList` 类型并将其指定为 `RootParamList` 类型的默认类型：
+
+~~~typescript
+type RootStackParamList = StaticParamList<typeof RootStack>;
+
+declare global {
+  namespace ReactNavigation {
+    interface RootParamList extends RootStackParamList {}
+  }
+}
+~~~
+
+##### 2.navigation.push("Details")：类型“Omit<NavigationProp<RootParamList>, "getState"> & { getState(): Readonly<{ key: string; index: number; routeNames: string[]; history?: unknown[] | undefined; routes: NavigationRoute<...>[]; type: string; stale: false; }> | undefined; }”上不存在属性“push”
+
+~~~typescript
+const navigation =
+  useNavigation<  Omit<NativeStackNavigationProp<ReactNavigation.RootParamList>, "getstate">
+  >();
+~~~
 
 ## 九、git问题
 

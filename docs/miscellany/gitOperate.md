@@ -290,7 +290,7 @@ $ revert:   执行git revert打印的message
 git remote set-url origin https://gitee.com/whitechiina/react-cloud-music.git
 ```
 
-# git 合并分支
+## git 合并分支
 
 - ### 1、首先切换到 master 分支上
 
@@ -363,3 +363,35 @@ git reset --hard 目标版本号
 
 - `git pull`：执行`git pull`命令时，Git 会自动从远程仓库下载最新的提交并将其合并到当前分支。它是`git fetch`和`git merge`两个操作的组合。它会自动将远程仓库的更新合并到当前分支，并自动解决可能的冲突。一般情况下，使用`git pull`可以快速获取远程最新代码并合并到本地分支。
 - `git fetch`：执行`git fetch`命令时，Git 会从远程仓库下载最新的提交，但不会自动将其合并到当前分支。它只是将远程仓库的最新代码下载到本地，并更新本地仓库中远程分支的指针位置。这样，你可以在本地查看远程仓库的更新情况，进行代码比较或其他操作。但它不会修改你当前所在的分支。
+
+## 镜像配置
+
+### 查看镜像：
+
+~~~
+npm get registry
+~~~
+
+### 官方源：
+
+~~~
+npm config set registry https://registry.npmjs.org
+~~~
+
+### 淘宝镜像：
+
+~~~
+npm config set registry https://registry.npmmirror.com
+~~~
+
+### 使用nrm工具切换淘宝源
+
+npx nrm use taobao
+
+### 如果之后需要切换回官方源可使用
+
+npx nrm use npm
+
+### 查看
+
+npx nrm current
