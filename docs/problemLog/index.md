@@ -460,7 +460,11 @@ environment:
 
 entity 内使用的绝对路径找不到模块，使用相对路径解决
 
-### 2.npm run migration:generate 时出现 No changes in database schema were fou. To create a new empty migration use "typeorm migration:create" command
+### 2.npm run migration:generate 时出现
+
+~~~
+No changes in database schema were fou. To create a new empty migration use "typeorm migration:create" command
+~~~
 
 dev 数据库已经建表，导出数据删表执行
 
@@ -472,7 +476,11 @@ nginx 限制了上传数据的大小。打开 nginx 主配置文件 nginx.conf�
 
 ## 八、React Native && expo问题
 
-### 1.Cannot find JAR 'kotlin-compiler-embeddable-1.9.0.jar' required by module 'gradle-kotlin-dsl' using classpath or distribution directory 'C:\Users\Administrator\.gradle\wrapper\dists\gradle-8.3-all\6en3ugtfdg5xnpx44z4qbwgas\gradle-8.3'
+### 1.kotlin-compiler-embeddable-1.9.0.jar
+
+~~~
+Cannot find JAR 'kotlin-compiler-embeddable-1.9.0.jar' required by module 'gradle-kotlin-dsl' using classpath or distribution directory 'C:\Users\Administrator\.gradle\wrapper\dists\gradle-8.3-all\6en3ugtfdg5xnpx44z4qbwgas\gradle-8.3'
+~~~
 
 将gradle-8.3-al整个文件夹删除，重新下载就好了
 
@@ -498,7 +506,11 @@ C:\Users\Administrator\.gradle\caches\jars-9内的文件缺失，删除重下
 
 #### 1.typescript问题
 
-##### 1.navigation.navigate("Details")：类型“[string]”的参数不能赋给类型“never”的参数。第 2 个重载(共 2 个)，“(options: never): void”，出现以下错误。类型“string”的参数不能赋给类型“never”的参数
+##### 1.类型“[string]”的参数不能赋给类型“never”的参数
+
+~~~
+navigation.navigate("Details")：类型“[string]”的参数不能赋给类型“never”的参数。第 2 个重载(共 2 个)，“(options: never): void”，出现以下错误。类型“string”的参数不能赋给类型“never”的参数
+~~~
 
 为根导航器生成 `ParamList` 类型并将其指定为 `RootParamList` 类型的默认类型：
 
@@ -512,7 +524,11 @@ declare global {
 }
 ~~~
 
-##### 2.navigation.push("Details")：类型“Omit<NavigationProp<RootParamList>, "getState"> & { getState(): Readonly<{ key: string; index: number; routeNames: string[]; history?: unknown[] | undefined; routes: NavigationRoute<...>[]; type: string; stale: false; }> | undefined; }”上不存在属性“push”
+##### 2.不存在属性“push”
+
+~~~
+navigation.push("Details")：类型“Omit<NavigationProp<RootParamList>, "getState"> & { getState(): Readonly<{ key: string; index: number; routeNames: string[]; history?: unknown[] | undefined; routes: NavigationRoute<...>[]; type: string; stale: false; }> | undefined; }”上不存在属性“push”
+~~~
 
 ~~~typescript
 const navigation =
